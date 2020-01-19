@@ -34,10 +34,10 @@ class App extends Component {
 
   //searches for dachshunds when inside react's component DidMount lifecycle method
   componentDidMount(){ //displays the gifs from the api when page loads 
-    this.performSearch('dachshund');//specific query can be entered here
+    this.performSearch('dachshund');//specific query can be entered here for the home page
     this.legoSearch();
-    // this.knexSearch;
-    // this.playmobilSearch;
+    this.playmobilSearch();
+    this.knexSearch();
   }
 
   //sets up data fetching for user input query
@@ -72,6 +72,37 @@ class App extends Component {
     }); 
   }
 
+  //PLAYMOBIL pictures data fetching
+  playmobilSearch = () => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPIKey}&tags=playmobil&safe_search=1&per_page=24&format=json&nojsoncallback=1`)//replace dachsund with ${query} once query is defined in search form
+    .then(response => { //add the response data to component state
+      this.setState({ 
+        playmobilPics: response.data.photos.photo,
+        //.data is an object included in an axios response that contains a axios-json-parsed response that was provided by the server
+        //.photos.photo is to access the flickr api's array(.photos) of photo objects(.photo)
+        loading: false
+        });
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error);
+    }); 
+  }
+
+  //K'NEX pictures data fetching
+  knexSearch = () => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPIKey}&tags=knex&safe_search=1&per_page=24&format=json&nojsoncallback=1`)//replace dachsund with ${query} once query is defined in search form
+    .then(response => { //add the response data to component state
+      this.setState({ 
+        knexPics: response.data.photos.photo,
+        //.data is an object included in an axios response that contains a axios-json-parsed response that was provided by the server
+        //.photos.photo is to access the flickr api's array(.photos) of photo objects(.photo)
+        loading: false
+        });
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error);
+    }); 
+  }
 
 
   render() {
