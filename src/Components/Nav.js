@@ -1,16 +1,17 @@
 //Stateless nav component for the apps navigation links.
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = (props) => {
-    return (
-        <nav className="main-nav">
-            <ul>
-                <li><a href='#'>Lego</a></li>
-                <li><a href='#'>Playmobil</a></li>
-                <li><a href='#'>K'nex</a></li>
-            </ul>
-        </nav>
-    );
+        return (
+            <nav className="main-nav">
+                <ul>
+                    <li><a href='#'>Lego</a></li>
+                    <li><a href='#'>Playmobil</a></li>
+                    <li><a href='#'>K'nex</a></li>
+                </ul>
+            </nav>
+        );
 }
 
 export default Nav;

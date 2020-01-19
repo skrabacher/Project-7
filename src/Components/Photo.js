@@ -1,13 +1,16 @@
-//stateless function component that displays the li and img elements.
+//stateless class component that displays the li and img elements.
 
-import React from 'react';
+import React, { Component } from 'react';
 
-const Photo = props => (
+class Photo extends Component {
+    render () {
+        return (
             <li>
-                <img src={ props.url } key={ props.key } />
+                <img src={ this.props.url } />
             </li>
-);
-
+        )
+    }
+};
 export default Photo;
 
 //MODELED AFTER: 
