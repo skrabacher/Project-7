@@ -35,7 +35,7 @@ class App extends Component {
   //searches for dachshunds when inside react's component DidMount lifecycle method
   componentDidMount(){ //displays the gifs from the api when page loads 
     this.performSearch('dachshund');//specific query can be entered here
-    // this.legoSearch();
+    this.legoSearch();
     // this.knexSearch;
     // this.playmobilSearch;
   }
@@ -92,6 +92,8 @@ class App extends Component {
               // } 
 
             /> */}
+            <Route exact path="/"
+              render={ () => <PhotoList searchResults={this.state.photos} /> } />
             <Route path="/lego"
               render={ () => <PhotoList searchResults={this.state.legoPics} /> } />
             <Route path="/playmobil" 
