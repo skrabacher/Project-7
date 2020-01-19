@@ -1,3 +1,13 @@
+ATTENTION: In order to use this app you need an API key.
+    Once you have an API Key from: https://www.flickr.com/services/apps/create/apply/
+    in the src folder, add a file titled Config.js with the following content:
+        
+        const flickrAPIKey = 'YOUR FLICKR API KEY';
+        export default flickrAPIKey; 
+
+    After adding a Config.js file with an API Key, you should be good to go!
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
