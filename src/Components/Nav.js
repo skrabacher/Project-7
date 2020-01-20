@@ -19,7 +19,6 @@ export default Nav;
 
 
 
-
 //Modeled After:
         // const Nav = (props) => {
         //     return (
