@@ -5,7 +5,10 @@ import React, { Component } from 'react';
 import Photo from './Photo';
 import NoPhoto from './NoPhoto';
 
+//searchResults={this.state.searchPics} title={this.state.userSearchQuery}
+
 const PhotoList = props => { 
+  //let params.userSearchQuery = props.title;
   const results = props.searchResults; //searchResults property passed from app.js (= response.data.photos.photo)
   console.log("PhotoList Results: ", results);
   let photos;

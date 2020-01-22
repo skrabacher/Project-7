@@ -29,7 +29,7 @@ class App extends Component {
       playmobilPics: [],
       knexPics: [],
       searchPics: [],
-      userSearchQuery: [],
+      userSearchQuery: '',
       loading: true
     };
   } 
@@ -44,6 +44,9 @@ class App extends Component {
 
   //QUERY pictures - sets up data fetching for user input query
   performSearch = (query) => {
+      this.setState({
+        userSearchQuery: query
+      });
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPIKey}&tags=${query}&safe_search=1&per_page=24&format=json&nojsoncallback=1`)//replace dachsund with ${query} once query is defined in search form
     .then(response => { //add the response data to component state
       this.setState({ 
@@ -51,7 +54,6 @@ class App extends Component {
         //.data is an object included in an axios response that contains a axios-json-parsed response that was provided by the server
         //.photos.photo is to access the flickr api's array(.photos) of photo objects(.photo)
         loading: false,
-        userSearchQuery: query
         });
     })
     .catch(error => {
@@ -60,6 +62,8 @@ class App extends Component {
     console.log("performSearch() query: ", query);
     console.log("performSearch function RAN");
     console.log("performSearch function data: ", this.state.searchPics);
+    console.log("performSearch userSearchQuery: ", this.state.userSearchQuery);
+
 
   }
 
@@ -160,7 +164,9 @@ class App extends Component {
               render={ () => <PhotoList searchResults={this.state.playmobilPics} title={"playmobil"}/> } />
             <Route path="/knex" 
               render={ () => <PhotoList searchResults={this.state.knexPics} title={"knex"}/> } />
-            <Route path="/search" 
+            {/* <Route exact path="/search" 
+              render={ () => <PhotoList searchResults={this.state.searchPics} title={this.state.userSearchQuery}/> } /> */}
+            <Route path="/search/:userSearchQuery" 
               render={ () => <PhotoList searchResults={this.state.searchPics} title={this.state.userSearchQuery}/> } />
             
           </Switch>

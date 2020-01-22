@@ -9,13 +9,14 @@ import PhotoList from './PhotoList';
 class SearchForm extends Component {
     //this searchText state is local to the SearchForm component
     state = {
-      searchText: ''
+      searchText: '',
+      inputText: ''
     }
     
     //onInputChange - updates component state anytime user changes the values in the search input field
     onInputChange = event => {
         console.log('in the onInputChange Function');
-        this.setState({ searchText: event.target.value }); //sets the state to the search value inputed by user
+        this.setState({ inputText: event.target.value }); //sets the state to the search value inputed by user
         console.log("onInputChange search text: ", event.target.value);
     }
 
@@ -24,6 +25,7 @@ class SearchForm extends Component {
         //console.log("event in handleSubmit(): ", event);
         event.preventDefault();
         console.log('in the handleSubmit Function');
+        this.setState({ searchText: this.state.inputText })
         this.props.onSearch(this.state.searchText); //invokes onSearch prop (aka performSearch function from app.js) and uses user input to define query
         console.log("handleSubmit search text: ", this.state.searchText);
         event.currentTarget.reset(); //resets form 
@@ -54,7 +56,7 @@ class SearchForm extends Component {
             </button>
             { 
                 (this.state.searchText.length > 0) 
-                ? <Redirect to={`/search`} />
+                ? <Redirect to={`/search/${this.state.searchText}`} />
                 : <Route exact path="/" />
             }
             {/* FIX NEEDED */}
