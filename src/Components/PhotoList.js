@@ -19,7 +19,7 @@ const PhotoList = props => {
 
   return(
     <div className="photo-container">
-        <h2>Results</h2>
+        <h2>Image Results for: {props.title}</h2>
           <ul className="photo-list">
             {photos}
           </ul> 

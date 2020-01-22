@@ -29,6 +29,7 @@ class App extends Component {
       playmobilPics: [],
       knexPics: [],
       searchPics: [],
+      userSearchQuery: [],
       loading: true
     };
   } 
@@ -49,7 +50,8 @@ class App extends Component {
         searchPics: response.data.photos.photo,
         //.data is an object included in an axios response that contains a axios-json-parsed response that was provided by the server
         //.photos.photo is to access the flickr api's array(.photos) of photo objects(.photo)
-        loading: false
+        loading: false,
+        userSearchQuery: query
         });
     })
     .catch(error => {
@@ -144,16 +146,23 @@ class App extends Component {
               // } 
 
             /> */}
-            <Route exact path="/"
-              render={ () => <PhotoList searchResults={this.state.homePics} /> } />
+            {/* {
+              (this.state.searchPics.length > 0)
+              ? <Route exact path="/search" render={ () => <PhotoList searchResults={this.state.searchPics} /> } />
+              : <Route exact path="/" render={ () => <PhotoList searchResults={this.state.homePics} /> } />
+            } */}
+            
+            <Route exact path="/" 
+              render={ () => <PhotoList searchResults={this.state.homePics} title={"dachschund"} /> } />
             <Route path="/lego"
-              render={ () => <PhotoList searchResults={this.state.legoPics} /> } />
+              render={ () => <PhotoList searchResults={this.state.legoPics} title={"lego"}/> } />
             <Route path="/playmobil" 
-              render={ () => <PhotoList searchResults={this.state.playmobilPics} /> } />
+              render={ () => <PhotoList searchResults={this.state.playmobilPics} title={"playmobil"}/> } />
             <Route path="/knex" 
-              render={ () => <PhotoList searchResults={this.state.knexPics} /> } />
-            <Route exact path="/search"
-              render={ () => <PhotoList searchResults={this.state.searchPics} /> } />
+              render={ () => <PhotoList searchResults={this.state.knexPics} title={"knex"}/> } />
+            <Route path="/search" 
+              render={ () => <PhotoList searchResults={this.state.searchPics} title={this.state.userSearchQuery}/> } />
+            
           </Switch>
           
         </div>
@@ -163,5 +172,6 @@ class App extends Component {
 }
 export default App;
 
-{/* <Route exact path={match.path} 
-                 render={ () => <Redirect to={`${match.path}/html`} /> } /> */}
+
+{/* <Route exact path="/" 
+render={ () => <Redirect to={`${match.path}/html`} /> } /> */}
