@@ -49,6 +49,7 @@ class App extends Component {
       });
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPIKey}&tags=${query}&safe_search=1&per_page=24&format=json&nojsoncallback=1`)//replace dachsund with ${query} once query is defined in search form
     .then(response => { //add the response data to component state
+      console.log(response.data);
       this.setState({ 
         searchPics: response.data.photos.photo,
         //.data is an object included in an axios response that contains a axios-json-parsed response that was provided by the server
@@ -179,5 +180,5 @@ class App extends Component {
 export default App;
 
 
-{/* <Route exact path="/" 
-render={ () => <Redirect to={`${match.path}/html`} /> } /> */}
+/* <Route exact path="/" 
+render={ () => <Redirect to={`${match.path}/html`} /> } /> */

@@ -1,7 +1,6 @@
 //stateful component for searching
 import React, { Component } from 'react';
-import { NavLink, Redirect, Route } from 'react-router-dom';
-import PhotoList from './PhotoList';
+import { Redirect, Route } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 // <Link exact path="/search" />
 
@@ -25,8 +24,10 @@ class SearchForm extends Component {
         //console.log("event in handleSubmit(): ", event);
         event.preventDefault();
         console.log('in the handleSubmit Function');
-        this.setState({ searchText: this.state.inputText })
+        this.setState({ searchText: this.state.inputText });
+        setTimeout( () => {
         this.props.onSearch(this.state.searchText); //invokes onSearch prop (aka performSearch function from app.js) and uses user input to define query
+        }, 0);
         console.log("handleSubmit search text: ", this.state.searchText);
         event.currentTarget.reset(); //resets form 
         // return (<NavLink to="/search"></NavLink>);

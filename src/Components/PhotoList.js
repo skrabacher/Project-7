@@ -1,6 +1,6 @@
-//stateful photo data container component
+//stateless photo data container component
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import Photo from './Photo';
 import NoPhoto from './NoPhoto';
