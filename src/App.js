@@ -143,19 +143,6 @@ class App extends Component {
           <SearchForm onSearch={this.performSearch} /> {/*passes the search function to SearchForm and calls in whenever onSearch is used in SearchForm*/} 
           <Nav />
           <Switch>
-            {/* <Route exact path="/" component={PhotoList}
-              // {
-              //   (this.state.loading)
-              //   ? <p>Images Loading...</p>
-              //   : <PhotoList searchResults={this.state.homePics} />   
-              // } 
-
-            /> */}
-            {/* {
-              (this.state.searchPics.length > 0)
-              ? <Route exact path="/search" render={ () => <PhotoList searchResults={this.state.searchPics} /> } />
-              : <Route exact path="/" render={ () => <PhotoList searchResults={this.state.homePics} /> } />
-            } */}
             
             <Route exact path="/" 
               render={ () => <PhotoList searchResults={this.state.homePics} title={"dachschund"} /> } />
@@ -165,13 +152,10 @@ class App extends Component {
               render={ () => <PhotoList searchResults={this.state.playmobilPics} title={"playmobil"}/> } />
             <Route path="/knex" 
               render={ () => <PhotoList searchResults={this.state.knexPics} title={"knex"}/> } />
-            {/* <Route exact path="/search" 
-              render={ () => <PhotoList searchResults={this.state.searchPics} title={this.state.userSearchQuery}/> } /> */}
             <Route path="/search/:userSearchQuery" 
               render={ () => <PhotoList searchResults={this.state.searchPics} title={this.state.userSearchQuery}/> } />
             
           </Switch>
-          
         </div>
       </BrowserRouter>
     );
@@ -180,5 +164,3 @@ class App extends Component {
 export default App;
 
 
-/* <Route exact path="/" 
-render={ () => <Redirect to={`${match.path}/html`} /> } /> */

@@ -1,8 +1,6 @@
 //stateful component for searching
 import React, { Component } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-// <Link exact path="/search" />
 
 
 class SearchForm extends Component {
@@ -21,19 +19,12 @@ class SearchForm extends Component {
 
     //handleSubmit - passes user input from the search form up to the perform Search function in app.js
     handleSubmit = event => {
-        //console.log("event in handleSubmit(): ", event);
         event.preventDefault();
-        console.log('in the handleSubmit Function');
         this.setState({ searchText: this.state.inputText });
         setTimeout( () => {
         this.props.onSearch(this.state.searchText); //invokes onSearch prop (aka performSearch function from app.js) and uses user input to define query
         }, 0);
-        console.log("handleSubmit search text: ", this.state.searchText);
         event.currentTarget.reset(); //resets form 
-        // return (<NavLink to="/search"></NavLink>);
-        //  <Route exact path="/search" />
-        console.log("before: ", this.state);
-        //this.setState({ searchText: '' });
         setTimeout( () => {
             console.log("after: ", this.state);
         }, 0); //even when its at zero milleseconds setTimeout defaults to the back of the call stack and this.setState with be called before set timeout whereas this.setState will get called AFTER console.log()
@@ -60,50 +51,9 @@ class SearchForm extends Component {
                 ? <Redirect to={`/search/${this.state.searchText}`} />
                 : <Route exact path="/" />
             }
-            {/* FIX NEEDED */}
-                {/* PROBLEM: this redirects EVERYTIME user types into input field. need to change to everytime user submits */}
-                {/* Potential solution is to move this.setState out of onInput into onSubmit and then only store the input as a variable in onInput */}
         </form>
                 );
             }
 }
 
 export default SearchForm;
-
-
-
-//MODELED AFTER:
-
-        // import React, { Component } from 'react';
-
-        // export default class SearchForm extends Component {
-        // //this searchText state is local to the SearchForm component
-        // state = {
-        //     searchText: ''
-        // }
-        
-        // onSearchChange = e => {
-        //     this.setState({ searchText: e.target.value }); //sets the state to the search value inputed by user
-        // }
-        
-        // handleSubmit = e => {
-        //     e.preventDefault();
-        //     this.props.onSearch(this.state.searchText);//invokes the performSearch function written in app.js that fetches our data with the search QUERY
-        //     //this.props.onSearch(this.query.value) to pull the input from the ref tag instead of state
-        //     e.currentTarget.reset();
-        // }
-        
-        // render() {  
-        //     return (
-        //     <form className="search-form" onSubmit={this.handleSubmit} >
-        //         <label className="is-hidden" htmlFor="search">Search</label>
-        //         <input type="search" 
-        //             onChange={this.onSearchChange}
-        //             name="search" 
-        //             ref={(input) => this.query = input} /*will allow us direct access to this dom element*/
-        //             placeholder="Search..." />
-        //         <button type="submit" id="submit" className="search-button"><i className="material-icons icn-search">search</i></button>
-        //     </form>      
-        //     );
-        // }
-        // }
